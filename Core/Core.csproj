@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +44,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decode\DecodeHocr.cs" />
+    <Compile Include="Decode\DecodeLines.cs" />
+    <Compile Include="Decode\DecodeParagraphs.cs" />
+    <Compile Include="Decode\DecodeWords.cs" />
+    <Compile Include="Model\Coord.cs" />
+    <Compile Include="Model\Helpers.cs" />
+    <Compile Include="Model\TextLetter.cs" />
+    <Compile Include="Model\TextLine.cs" />
+    <Compile Include="Model\TextPage.cs" />
+    <Compile Include="Model\TextParagraph.cs" />
+    <Compile Include="Model\TextWord.cs" />
     <Compile Include="OCR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
