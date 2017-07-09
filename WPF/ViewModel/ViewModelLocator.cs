@@ -15,6 +15,11 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using WPF.Implement;
+using WPF.Interface;
+using Core.Interface;
+using Core.Implement;
+
 
 namespace WPF.ViewModel
 {
@@ -41,6 +46,9 @@ namespace WPF.ViewModel
             ////    // Create run time view services and models
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
+
+            SimpleIoc.Default.Register<IDataService, DataService>(true);
+            SimpleIoc.Default.Register<ICoreOcr, CoreOcr>(true);
 
             SimpleIoc.Default.Register<MainViewModel>();
         }
