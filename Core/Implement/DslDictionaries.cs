@@ -9,7 +9,7 @@ namespace Core.Implement
 {
     public class DslDictionaries:IDslDictionaries
     {
-        private List<MyDslDictionary> _dslDictionaries;
+        private readonly List<MyDslDictionary> _dslDictionaries;
         //private List<string> _filenameList;
 
         public DslDictionaries()
@@ -36,23 +36,19 @@ namespace Core.Implement
         public Dictionary<string,string> SearchWordInDslDictionaries(string word)
         {
             
-            Dictionary<string, string> wordsDictionary = new Dictionary<string, string>();
+            var wordsDictionary = new Dictionary<string, string>();
 
-            foreach (MyDslDictionary myDslDictionary in _dslDictionaries)
+            foreach (var myDslDictionary in _dslDictionaries)
             {
-                foreach (KeyValuePair<string, List<string>> wordKeyValuePair in myDslDictionary.Word)
+                foreach (var wordKeyValuePair in myDslDictionary.Word)
                 {
                     if (wordKeyValuePair.Key.ToLower() == word.ToLower())
                     {
-                        var temp = "";
-                        foreach (var s in wordKeyValuePair.Value)
-                        {
-                            temp = temp + " " + s;
-                        }
-                        var temp2 = string.Join(",", wordKeyValuePair.Value);
+                        
+                        
 
 
-                        wordsDictionary.Add(myDslDictionary.Name,string.Join(",",temp));
+                        wordsDictionary.Add(myDslDictionary.Name,string.Join(",\n\t",wordKeyValuePair.Value));
                     }
                 }
             }
@@ -115,7 +111,7 @@ namespace Core.Implement
 
                     if (lines[i].Substring(0, 1) == "\t")
                     {
-                        list.Add(lines[i].Substring(1));
+                        list.Add(lines[i].Substring(1).Replace("[m2]",string.Empty));
                         i++;
                     }
                     else

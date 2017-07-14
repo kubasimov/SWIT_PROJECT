@@ -45,9 +45,10 @@ namespace WPF.ViewModel
 
             var textFromDsl = DslDictionaries.SearchWordInDslDictionaries(text.getStem().toString());
 
+
             _dataExchangeViewModel.Add(EnumExchangeViewmodel.Search,textFromDsl);
 
-            new SearchView().Show();
+            new SearchView().ShowDialog();
 
         }
 

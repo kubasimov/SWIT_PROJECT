@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -15,63 +16,64 @@ namespace WPF.ViewModel
         public SearchViewModel(IDataExchangeViewModel dataExchangeViewModel)
         {
             _dataExchangeViewModel = dataExchangeViewModel;
-
-            ShowResult();
+            ShowTextResult();
         }
 
-        private void ShowResult()
+        private void ShowTextResult()
         {
-            if (!_dataExchangeViewModel.ContainsKey(EnumExchangeViewmodel.Search)) return;
-            var text = (List<string>) _dataExchangeViewModel.Item(EnumExchangeViewmodel.Search);
-            var temp = new StringBuilder();
-
-            foreach (string s in text)
+            if (_dataExchangeViewModel.ContainsKey(EnumExchangeViewmodel.Search))
             {
-                temp.AppendLine(s);
+                var temp = (Dictionary<string,string>) _dataExchangeViewModel.Item(EnumExchangeViewmodel.Search);
+                var text = new StringBuilder();
 
+                foreach (var tempKey in temp)
+                {
+                    text.AppendLine(tempKey.Key);
+                    text.AppendLine("\t" + tempKey.Value);
+                }
+                text.AppendLine("\n");
+
+                ShowText = text.ToString();
+
+                RaisePropertyChanged(ShowTextPropertyName);
             }
-
-            Result = temp.ToString();
-
-
-            RaisePropertyChanged(ResultPropertyName);
         }
-
-        private void ExitCommand()
+        private void ExecuteExitCommand()
         {
-            Messenger.Default.Send(new NotificationMessage(this, "CloseSearch"));
+            Messenger.Default.Send(new NotificationMessage(this,"CloseSearch"));
         }
 
 
-        #region Result
-
+        #region ShowText
         /// <summary>
-        /// The <see cref="Result" /> property's name.
+        /// The <see cref="ShowText" /> property's name.
         /// </summary>
-        public const string ResultPropertyName = "Result";
+        public const string ShowTextPropertyName = "ShowText";
 
-        private string _result  ;
+        private string _showText ;
 
         /// <summary>
-        /// Sets and gets the Result property.
+        /// Sets and gets the ShowText property.
         /// Changes to that property's value raise the PropertyChanged event. 
         /// </summary>
-        public string Result
+        public string ShowText
         {
-            get => _result;
+            get
+            {
+                return _showText;
+            }
 
             set
             {
-                if (_result == value)
+                if (_showText == value)
                 {
                     return;
                 }
 
-                _result = value;
-                RaisePropertyChanged(ResultPropertyName);
+                _showText = value;
+                RaisePropertyChanged(ShowTextPropertyName);
             }
         }
-
         #endregion
 
         #region ExitCommand
@@ -81,13 +83,11 @@ namespace WPF.ViewModel
         /// <summary>
         /// Gets the MyCommand.
         /// </summary>
-        public RelayCommand MyCommand => _exitRelayCommand
-                                         ?? (_exitRelayCommand = new RelayCommand(ExitCommand));
+        public RelayCommand ExitCommand => _exitRelayCommand
+                                           ?? (_exitRelayCommand = new RelayCommand(ExecuteExitCommand));
 
         
+
         #endregion
-
-
-
     }
 }

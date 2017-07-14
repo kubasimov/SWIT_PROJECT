@@ -30,8 +30,8 @@
         <Button Content="Wczytaj obraz" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="97" Height="20" Command="{Binding OpenCommand, Mode=OneWay}"/>
         <Button Content="Rozpoznaj tekst" HorizontalAlignment="Left" Margin="112,10,0,0" VerticalAlignment="Top" Width="97" Height="20" Command="{Binding OcrCommand, Mode=OneWay}"/>
         <Button Content="Pokoloruj hasła" HorizontalAlignment="Left" Margin="214,10,0,0" VerticalAlignment="Top" Width="97" Height="20" Command="{Binding ShowParagraphCommand, Mode=OneWay}" />
-        <Button Content="Wyjście" HorizontalAlignment="Left" Margin="312,10,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ExitCommand, Mode=OneWay}" Height="20"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="0,11,0,0" TextWrapping="Wrap" Text="{Binding SearchText}" VerticalAlignment="Top" Width="278" Grid.Column="1"/>
-        <Button Content="Szukaj" Grid.Column="1" HorizontalAlignment="Left" Margin="283,11,0,0" VerticalAlignment="Top" Width="75" Command="{Binding SearchCommand, Mode=OneWay}" Height="20"/>
+        <Button Content="Wyjście" HorizontalAlignment="Left" Margin="316,10,0,0" VerticalAlignment="Top" Width="97" Command="{Binding ExitCommand, Mode=OneWay}" Height="20"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,11,0,0" TextWrapping="Wrap" Text="{Binding SearchText}" VerticalAlignment="Top" Width="278" Grid.Column="1"/>
+        <Button Content="Szukaj" Grid.Column="1" HorizontalAlignment="Left" Margin="316,14,0,0" VerticalAlignment="Top" Width="75" Command="{Binding SearchCommand, Mode=OneWay}" Height="20"/>
     </Grid>
 </Window>

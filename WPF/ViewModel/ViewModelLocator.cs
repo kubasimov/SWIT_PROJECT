@@ -53,6 +53,7 @@ namespace WPF.ViewModel
 
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<SearchViewModel>();
         }
 
         public MainViewModel Main
@@ -60,7 +61,7 @@ namespace WPF.ViewModel
             get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
         }
 
-        public SearchViewModel Search
+        public SearchViewModel Sea
         {
             get { return ServiceLocator.Current.GetInstance<SearchViewModel>(); }
         }
