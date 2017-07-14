@@ -18,10 +18,6 @@ using WPF.View;
 
 namespace WPF.ViewModel
 {
-
-
-
-
     public class MainViewModel : ViewModelBase
     {
         private readonly ICoreOcr _coreOcr;
@@ -39,11 +35,15 @@ namespace WPF.ViewModel
         {
             var speller = new PolishStemmer();
 
-            var text = speller.lookup(_searchText).toArray().FirstOrDefault() as WordData;
+            var text = (speller.lookup(_searchText).toArray().FirstOrDefault() as WordData).getStem().toString();
 
+            if (text == null)
+            {
+                text = _searchText;
+            }
             IDslDictionaries DslDictionaries = new DslDictionaries();
 
-            var textFromDsl = DslDictionaries.SearchWordInDslDictionaries(text.getStem().toString());
+            var textFromDsl = DslDictionaries.SearchWordInDslDictionaries(text);
 
 
             _dataExchangeViewModel.Add(EnumExchangeViewmodel.Search,textFromDsl);
@@ -76,7 +76,11 @@ namespace WPF.ViewModel
         private void ExecuteOpenCommand()
         {
             _bitmapImage = _dataService.LoadImage();
-
+            if (!(_bitmapImage.UriSource==null))
+            {
+                IsImage = true;
+            }
+            RaisePropertyChanged(IsImagePropertyName);
             RaisePropertyChanged(BitmapImagePropertyName);
         }
 
@@ -274,6 +278,73 @@ namespace WPF.ViewModel
         }
 
         #endregion
-        
+
+        #region IsImage
+
+        /// <summary>
+        /// The <see cref="IsImage" /> property's name.
+        /// </summary>
+        public const string IsImagePropertyName = "IsImage";
+
+        private bool _isImage = false;
+
+        /// <summary>
+        /// Sets and gets the IsImage property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public bool IsImage
+        {
+            get
+            {
+                return _isImage;
+            }
+
+            set
+            {
+                if (_isImage == value)
+                {
+                    return;
+                }
+
+                _isImage = value;
+                RaisePropertyChanged(IsImagePropertyName);
+            }
+        }
+
+        #endregion
+
+        #region IsParagraph
+
+        /// <summary>
+        /// The <see cref="IsParagraph" /> property's name.
+        /// </summary>
+        public const string IsParagraphPropertyName = "IsParagraph";
+
+        private bool _isParagraph = false;
+
+        /// <summary>
+        /// Sets and gets the IsParagraph property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public bool IsParagraph
+        {
+            get
+            {
+                return _isParagraph;
+            }
+
+            set
+            {
+                if (_isParagraph == value)
+                {
+                    return;
+                }
+
+                _isParagraph = value;
+                RaisePropertyChanged(IsParagraphPropertyName);
+            }
+        }
+
+        #endregion
     }
 }

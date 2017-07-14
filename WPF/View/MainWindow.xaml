@@ -6,12 +6,22 @@
 
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
     
+        xmlns:Converter="clr-namespace:WPF.Converter"
+    
         x:Class="WPF.View.MainWindow"
 
         mc:Ignorable="d"
         Title="Digital Dictionary" Height="697" Width="1035" 
-        DataContext="{Binding Main, Mode=OneWay, Source={StaticResource Locator}}" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
         >
+
+
+    <Window.Resources>
+        <Converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <Binding Mode="OneWay" Path="Main" Source="{StaticResource Locator}"/>
+    </Window.DataContext>
 
 
     <Grid>
@@ -25,12 +35,11 @@
             <ColumnDefinition Width="530*"/>
 
         </Grid.ColumnDefinitions>
-        <Image HorizontalAlignment="Left" Height="604.969" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"  Source="{Binding BitmapImage,Mode=TwoWay}" Width="494.5"/>
-        <syncfusion:RichTextBoxAdv Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"  Document="{Binding DocumentAdv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="604.969" Width="494.5"/>
+        <Image HorizontalAlignment="Left" Height="604.969" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"  Source="{Binding BitmapImage, Mode=TwoWay}" Width="494.5"/>
+        <syncfusion:RichTextBoxAdv Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"  Document="{Binding DocumentAdv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="604.969" Width="494.5" AllowDrop="True"/>
         <Button Content="Wczytaj obraz" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="97" Height="20" Command="{Binding OpenCommand, Mode=OneWay}"/>
-        <Button Content="Rozpoznaj tekst" HorizontalAlignment="Left" Margin="112,10,0,0" VerticalAlignment="Top" Width="97" Height="20" Command="{Binding OcrCommand, Mode=OneWay}"/>
-        <Button Content="Pokoloruj hasła" HorizontalAlignment="Left" Margin="214,10,0,0" VerticalAlignment="Top" Width="97" Height="20" Command="{Binding ShowParagraphCommand, Mode=OneWay}" />
-        <Button Content="Wyjście" HorizontalAlignment="Left" Margin="316,10,0,0" VerticalAlignment="Top" Width="97" Command="{Binding ExitCommand, Mode=OneWay}" Height="20"/>
+        <Button Content="Rozpoznaj tekst" HorizontalAlignment="Left" Margin="112,10,0,0" VerticalAlignment="Top" Width="97" Height="20" Command="{Binding OcrCommand, Mode=OneWay}" IsEnabled="{Binding IsImage,  Mode=TwoWay}"/>
+        <Button Content="Wyjście" HorizontalAlignment="Left" Margin="214,10,0,0" VerticalAlignment="Top" Width="97" Command="{Binding ExitCommand, Mode=OneWay}" Height="20"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="10,11,0,0" TextWrapping="Wrap" Text="{Binding SearchText}" VerticalAlignment="Top" Width="278" Grid.Column="1"/>
         <Button Content="Szukaj" Grid.Column="1" HorizontalAlignment="Left" Margin="316,14,0,0" VerticalAlignment="Top" Width="75" Command="{Binding SearchCommand, Mode=OneWay}" Height="20"/>
     </Grid>

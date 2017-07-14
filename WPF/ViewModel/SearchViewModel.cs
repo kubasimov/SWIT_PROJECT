@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections;
 using System.Text;
 using GalaSoft.MvvmLight;
@@ -31,7 +32,8 @@ namespace WPF.ViewModel
                     text.AppendLine(tempKey.Key);
                     text.AppendLine("\t" + tempKey.Value);
                 }
-                text.AppendLine("\n");
+
+                text.AppendLine(Environment.NewLine);
 
                 ShowText = text.ToString();
 
