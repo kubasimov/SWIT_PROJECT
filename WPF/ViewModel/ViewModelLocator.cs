@@ -49,18 +49,22 @@ namespace WPF.ViewModel
 
             SimpleIoc.Default.Register<IDataService, DataService>(true);
             SimpleIoc.Default.Register<ICoreOcr, CoreOcr>(true);
+            SimpleIoc.Default.Register<IDataExchangeViewModel,DataExchangeViewModel>(true);
+
 
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
         public MainViewModel Main
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
+            get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
         }
-        
+
+        public SearchViewModel Search
+        {
+            get { return ServiceLocator.Current.GetInstance<SearchViewModel>(); }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

@@ -5,31 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
-        xmlns:wpf="clr-namespace:WPF"
-        x:Class="WPF.MainWindow"
+    
+        x:Class="WPF.View.MainWindow"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="714" Width="1473" DataContext="{Binding Main, Mode=OneWay, Source={StaticResource Locator}}">
+        Title="Digital Dictionary" Height="697" Width="1035" 
+        DataContext="{Binding Main, Mode=OneWay, Source={StaticResource Locator}}" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
+        >
 
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="42*"/>
-            <RowDefinition Height="641*"/>
+            <RowDefinition Height="610*"/>
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="530*"/>
             <ColumnDefinition Width="530*"/>
-            <ColumnDefinition Width="422*"/>
+
         </Grid.ColumnDefinitions>
-        <Image HorizontalAlignment="Left" Height="621" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="504" Source="{Binding BitmapImage,Mode=TwoWay}"/>
-        <syncfusion:RichTextBoxAdv Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"  Document="{Binding DocumentAdv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="621" Width="504"/>
+        <Image HorizontalAlignment="Left" Height="604.969" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"  Source="{Binding BitmapImage,Mode=TwoWay}" Width="494.5"/>
+        <syncfusion:RichTextBoxAdv Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"  Document="{Binding DocumentAdv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="604.969" Width="494.5"/>
         <Button Content="Wczytaj obraz" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="97" Height="20" Command="{Binding OpenCommand, Mode=OneWay}"/>
         <Button Content="Rozpoznaj tekst" HorizontalAlignment="Left" Margin="112,10,0,0" VerticalAlignment="Top" Width="97" Height="20" Command="{Binding OcrCommand, Mode=OneWay}"/>
-        <Button Content="Pokoloruj hasła" Width="Auto" Margin="214,10,208,12" Command="{Binding ShowParagraphCommand, Mode=OneWay}" />
+        <Button Content="Pokoloruj hasła" HorizontalAlignment="Left" Margin="214,10,0,0" VerticalAlignment="Top" Width="97" Height="20" Command="{Binding ShowParagraphCommand, Mode=OneWay}" />
         <Button Content="Wyjście" HorizontalAlignment="Left" Margin="312,10,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ExitCommand, Mode=OneWay}" Height="20"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="0,11,0,0" TextWrapping="Wrap" Text="{Binding SearchText}" VerticalAlignment="Top" Width="278" Grid.Column="1"/>
-        <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="283,11,0,0" VerticalAlignment="Top" Width="75" Command="{Binding SearchCommand, Mode=OneWay}" Height="20"/>
-        <WebBrowser Grid.Column="2" HorizontalAlignment="Left" Height="621" Margin="10,10,0,0" VerticalAlignment="Top" Width="397" Grid.Row="1" wpf:WebBrowserUtility.BindableSource="{Binding HtmlUri}"/>
+        <Button Content="Szukaj" Grid.Column="1" HorizontalAlignment="Left" Margin="283,11,0,0" VerticalAlignment="Top" Width="75" Command="{Binding SearchCommand, Mode=OneWay}" Height="20"/>
     </Grid>
 </Window>

@@ -1,26 +1,25 @@
 ﻿using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
 
-namespace WPF
+namespace WPF.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SearchView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SearchView : Window
     {
-        public MainWindow()
+        public SearchView()
         {
             InitializeComponent();
+
             Messenger.Default.Register<NotificationMessage>(this, nm =>
             {
-                if (nm.Notification == "CloseMain")
+                if (nm.Notification == "CloseSearch")
                 {
-                    Messenger.Default.Unregister<NotificationMessage>(this, "CloseMain");
+                    Messenger.Default.Unregister<NotificationMessage>(this, "CloseSearch");
                     Close();
                 }
             });
         }
-
-        
     }
 }

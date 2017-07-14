@@ -1,4 +1,3 @@
-using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Syncfusion.Windows.Tools.Controls;
@@ -14,6 +13,8 @@ using System.Windows.Media;
 using Core.Implement;
 using morfologik.stemming;
 using morfologik.stemming.polish;
+using WPF.Enum;
+using WPF.View;
 
 namespace WPF.ViewModel
 {
@@ -25,12 +26,13 @@ namespace WPF.ViewModel
     {
         private readonly ICoreOcr _coreOcr;
         private readonly IDataService _dataService;
+        private readonly IDataExchangeViewModel _dataExchangeViewModel;
 
-        public MainViewModel(ICoreOcr coreOcr,IDataService dataService)
+        public MainViewModel(ICoreOcr coreOcr,IDataService dataService, IDataExchangeViewModel dataExchangeViewModel)
         {
             _coreOcr = coreOcr;
             _dataService = dataService;
-
+            _dataExchangeViewModel = dataExchangeViewModel;
         }
 
         private void ExecuteSearchCommand()
@@ -43,10 +45,10 @@ namespace WPF.ViewModel
 
             var textFromDsl = DslDictionaries.SearchWordInDslDictionaries(text.getStem().toString());
 
-            //var html = "https://sjp.pwn.pl/szukaj/" + text.getStem().toString() + ".html";
+            _dataExchangeViewModel.Add(EnumExchangeViewmodel.Search,textFromDsl);
 
-            //_htmlUri = new Uri(html);
-            RaisePropertyChanged(HtmlUriPropertyName);
+            new SearchView().Show();
+
         }
 
         private void ExecuteExitCommand()
@@ -271,39 +273,6 @@ namespace WPF.ViewModel
         }
 
         #endregion
-
-        #region HtmlUri
-
-        /// <summary>
-        /// The <see cref="HtmlUri" /> property's name.
-        /// </summary>
-        public const string HtmlUriPropertyName = "HtmlUri";
-
-        private Uri _htmlUri ;
-
-        /// <summary>
-        /// Sets and gets the HtmlUri property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
-        public Uri HtmlUri
-        {
-            get
-            {
-                return _htmlUri;
-            }
-
-            set
-            {
-                if (_htmlUri == value)
-                {
-                    return;
-                }
-
-                _htmlUri = value;
-                RaisePropertyChanged(HtmlUriPropertyName);
-            }
-        }
-
-        #endregion
+        
     }
 }

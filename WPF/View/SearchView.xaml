@@ -1,0 +1,15 @@
+﻿<Window x:Class="WPF.View.SearchView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Search Result" Height="449.057" Width="516.981"
+        DataContext="{Binding Search, Mode=OneWay, Source={StaticResource Locator}}"
+        >
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding Result}" VerticalAlignment="Top" Height="359.357" Width="488.981"/>
+        <Button Content="Wyjście" HorizontalAlignment="Left" Margin="377,374,0,0" VerticalAlignment="Top" Width="75" Command="{Binding MyCommand, Mode=OneWay}"/>
+
+    </Grid>
+</Window>
