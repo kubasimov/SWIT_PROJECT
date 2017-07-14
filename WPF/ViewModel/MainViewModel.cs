@@ -11,6 +11,7 @@ using System.Windows;
 using WPF.Interface;
 using GalaSoft.MvvmLight.Messaging;
 using System.Windows.Media;
+using Core.Implement;
 using morfologik.stemming;
 using morfologik.stemming.polish;
 
@@ -38,9 +39,13 @@ namespace WPF.ViewModel
 
             var text = speller.lookup(_searchText).toArray().FirstOrDefault() as WordData;
 
-            var html = "https://sjp.pwn.pl/szukaj/" + text.getStem().toString() + ".html";
+            IDslDictionaries DslDictionaries = new DslDictionaries();
 
-            _htmlUri = new Uri(html);
+            var textFromDsl = DslDictionaries.SearchWordInDslDictionaries(text.getStem().toString());
+
+            //var html = "https://sjp.pwn.pl/szukaj/" + text.getStem().toString() + ".html";
+
+            //_htmlUri = new Uri(html);
             RaisePropertyChanged(HtmlUriPropertyName);
         }
 

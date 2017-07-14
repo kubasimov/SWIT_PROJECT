@@ -17,5 +17,13 @@ namespace Console
 
             Assert.Equal("\t",sub);
         }
+
+        [Fact]
+        public void AddNames()
+        {
+            List<string> ll = new List<string>{"aaa","bbb","ccc"};
+            var t = string.Join(", ", ll);
+            Assert.Equal("aaa, bbb, ccc",t);
+        }
     }
 }

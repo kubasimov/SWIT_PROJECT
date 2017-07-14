@@ -49,9 +49,12 @@
     <Compile Include="Decode\DecodeParagraphs.cs" />
     <Compile Include="Decode\DecodeWords.cs" />
     <Compile Include="Implement\CoreOcr.cs" />
+    <Compile Include="Implement\DslDictionaries.cs" />
     <Compile Include="Interface\ICoreOcr.cs" />
+    <Compile Include="Interface\IDslDictionaries.cs" />
     <Compile Include="Model\Coord.cs" />
     <Compile Include="Model\Helpers.cs" />
+    <Compile Include="Model\MyDslDictionary.cs" />
     <Compile Include="Model\TextLetter.cs" />
     <Compile Include="Model\TextLine.cs" />
     <Compile Include="Model\TextPage.cs" />
