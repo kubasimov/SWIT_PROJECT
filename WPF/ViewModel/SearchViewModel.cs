@@ -26,14 +26,24 @@ namespace WPF.ViewModel
             {
                 var temp = (Dictionary<string,string>) _dataExchangeViewModel.Item(EnumExchangeViewmodel.Search);
                 var text = new StringBuilder();
-
-                foreach (var tempKey in temp)
+                if (temp.Count>0)
                 {
-                    text.AppendLine(tempKey.Key);
-                    text.AppendLine("\t" + tempKey.Value);
-                }
+                    
 
-                text.AppendLine(Environment.NewLine);
+                    foreach (var tempKey in temp)
+                    {
+                        text.AppendLine(tempKey.Key);
+                        text.AppendLine("\t" + tempKey.Value);
+                        text.AppendLine(Environment.NewLine);
+                    }
+                }
+                else
+                {
+                    text.AppendLine("Nie znaleziono hasła w słownikach");
+                }
+                
+
+                
 
                 ShowText = text.ToString();
 

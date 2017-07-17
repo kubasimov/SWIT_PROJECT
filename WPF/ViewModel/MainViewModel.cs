@@ -34,21 +34,37 @@ namespace WPF.ViewModel
         private void ExecuteSearchCommand()
         {
             var speller = new PolishStemmer();
+            //TODO: B³ad gdy text nie rozpoznany
+            var textWordData = (speller.lookup(_searchText).toArray().FirstOrDefault() as WordData);
 
-            var text = (speller.lookup(_searchText).toArray().FirstOrDefault() as WordData).getStem().toString();
+            string text;
 
-            if (text == null)
+            if (textWordData!=null)
+            {
+                text = textWordData.getStem().toString();
+            }
+            else
             {
                 text = _searchText;
             }
+            
+
+           
             IDslDictionaries DslDictionaries = new DslDictionaries();
 
             var textFromDsl = DslDictionaries.SearchWordInDslDictionaries(text);
 
+            if (textFromDsl != null)
+            {
+                _dataExchangeViewModel.Add(EnumExchangeViewmodel.Search, textFromDsl);
 
-            _dataExchangeViewModel.Add(EnumExchangeViewmodel.Search,textFromDsl);
-
-            new SearchView().ShowDialog();
+                new SearchView().ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Nie znaleziono s³owa w s³ownikach.","B³¹d",MessageBoxButton.OK);
+            }
+                
 
         }
 

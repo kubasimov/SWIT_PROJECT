@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF.View"
         mc:Ignorable="d"
-        Title="SearchView" Height="475" Width="472" DataContext="{Binding Sea, Mode=OneWay, Source={StaticResource Locator}}">
+        Title="SearchView" Height="637" Width="661" DataContext="{Binding Sea, Mode=OneWay, Source={StaticResource Locator}}" Unloaded="Window_Unloaded">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Height="371" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding ShowText}" VerticalAlignment="Top" Width="444"/>
-        <Button Content="Wyjście" HorizontalAlignment="Left" Margin="361,404,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ExitCommand, Mode=OneWay}"/>
+        <TextBlock HorizontalAlignment="Left" Height="500" Margin="37,40,0,0" TextWrapping="Wrap" Text="{Binding ShowText}" VerticalAlignment="Top" Width="606"/>
+        <Button Content="Wyjście" HorizontalAlignment="Left" Margin="553,560,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ExitCommand, Mode=OneWay}"/>
 
     </Grid>
 </Window>

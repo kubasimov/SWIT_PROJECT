@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
+using WPF.ViewModel;
 
 namespace WPF.View
 {
@@ -21,6 +22,5 @@ namespace WPF.View
             });
         }
 
-        
     }
 }

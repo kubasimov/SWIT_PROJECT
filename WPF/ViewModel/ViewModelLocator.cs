@@ -70,5 +70,11 @@ namespace WPF.ViewModel
         {
             // TODO Clear the ViewModels
         }
+
+        public static void UnRegisterSearchViewModel()
+        {
+            SimpleIoc.Default.Unregister<SearchViewModel>();
+            SimpleIoc.Default.Register<SearchViewModel>();
+        }
     }
 }

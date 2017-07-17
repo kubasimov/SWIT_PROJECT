@@ -37,22 +37,25 @@ namespace Core.Implement
         {
             
             var wordsDictionary = new Dictionary<string, string>();
-
-            foreach (var myDslDictionary in _dslDictionaries)
+            try
             {
-                foreach (var wordKeyValuePair in myDslDictionary.Word)
+                foreach (var myDslDictionary in _dslDictionaries)
                 {
-                    if (wordKeyValuePair.Key.ToLower() == word.ToLower())
+                    foreach (var wordKeyValuePair in myDslDictionary.Word)
                     {
-                        
-                        
-
-
-                        wordsDictionary.Add(myDslDictionary.Name,string.Join(",\n\t",wordKeyValuePair.Value));
+                        if (wordKeyValuePair.Key.ToLower() == word.ToLower())
+                        {
+                            wordsDictionary.Add(myDslDictionary.Name, string.Join(",\n\t", wordKeyValuePair.Value));
+                        }
                     }
                 }
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
             return wordsDictionary;
         }
 

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Messaging;
+using WPF.ViewModel;
 
 namespace WPF.View
 {
@@ -31,6 +32,11 @@ namespace WPF.View
                     Close();
                 }
             });
+        }
+
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ViewModelLocator.UnRegisterSearchViewModel();
         }
     }
 }
